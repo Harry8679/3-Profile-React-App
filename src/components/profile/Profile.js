@@ -5,6 +5,11 @@ import { FaTrashAlt } from 'react-icons/fa';
 
 const Profile = () => {
   const [userProfile, setUserProfile] = useState(profiles);
+
+  const removeProfile = (id) => {
+    const newProfileList = userProfile.filter(profile => profile.id !== id);
+    setUserProfile(newProfileList);
+  }
   return (
     <section className="profile-sec">
         <div className="container">
@@ -17,7 +22,7 @@ const Profile = () => {
                             <h4 className='--text-light'>Name: {profile.name}</h4>
                             <p className='--text-light'>Job: {profile.job}</p>
                         </div>
-                        <FaTrashAlt size={18} className='icon' />
+                        <FaTrashAlt size={18} className='icon' onClick={() => removeProfile(profile.id)} />
                     </div>
                 );
             })}
